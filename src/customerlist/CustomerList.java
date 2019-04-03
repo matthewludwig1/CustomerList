@@ -59,7 +59,6 @@ public class CustomerList {
                     break;
                 }
 
-           
                 fileOut.println();
                 fileOut.println();
                 fileOut.append("Name: "+ name);
@@ -83,7 +82,7 @@ public class CustomerList {
            System.out.println(exc2 + " ");
        }
        catch (FileNotFoundException x) {
-           System.out.println(x);
+           System.out.println(x + " Please enter an accessable file name");
        }
     }
     
