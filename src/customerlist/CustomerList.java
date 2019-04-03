@@ -1,12 +1,12 @@
 /*
    Matt Ludwig
-   2 April 2019
+   3 April 2019
    This program writes customer data to an external text file
  */
 
 package customerlist;
-
 /**
+
  *
  * @author malud0519
  */
@@ -18,7 +18,7 @@ public class CustomerList {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) throws IOException{
        String name, address, province, city, postalCode;
        int numCustomers;
        
@@ -37,16 +37,28 @@ public class CustomerList {
                 "customers.txt", true));
        
             for (int i = 0; i < numCustomers; i++) { //EOF
-                int custNum = i +1;
+                int custNum = i + 1;
                 name = JOptionPane.showInputDialog("Enter the name of customer " + custNum +":");
+                if (name.equals("")) {
+                    break;
+                }
                 province = JOptionPane.showInputDialog("Enter customer "+ custNum + "'s "+ "home province:");
-                city = JOptionPane.showInputDialog("Enter the customer's city");
-                address = JOptionPane.showInputDialog("Enter the customer's address:");
-                postalCode = JOptionPane.showInputDialog("Enter the customer's postal code:");
-              
-              if (name == null || province == null || city == null || address == null || postalCode == null) {
-                  break;
-              }
+                if (province.equals("")) {
+                    break;
+                }
+                city = JOptionPane.showInputDialog("Enter customer "+ custNum + "'s home city:");
+                if (city.equals("")) {
+                    break;
+                }
+                address = JOptionPane.showInputDialog("Enter customer "+ custNum + "'s " + "address:");
+                if (address.equals("")) {
+                    break;
+                }
+                postalCode = JOptionPane.showInputDialog("Enter customer " + custNum + "'s " + "postal code:");
+                if (postalCode.equals("")) {
+                    break;
+                }
+
            
                 fileOut.println();
                 fileOut.println();
@@ -59,13 +71,20 @@ public class CustomerList {
                 fileOut.append("Address: "+ address);
                 fileOut.println();
                 fileOut.append("Postal Code: "+ postalCode);
-          
-            }
+              }
+              
+            
             fileOut.close();
        }
        catch (NumberFormatException exc) { 
            System.out.println(exc); 
        } 
+       catch (NullPointerException exc2) {
+           System.out.println(exc2 + " ");
+       }
+       catch (FileNotFoundException x) {
+           System.out.println(x);
+       }
     }
     
 }
